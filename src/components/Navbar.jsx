@@ -1,44 +1,54 @@
-import React from 'react'
+import { useState } from 'react';
 
 const Navbar = () => {
+    const [isOffcanvasOpen, setIsOffcanvasOpen] = useState(false);
+
+    const toggleOffcanvas = () => {
+        setIsOffcanvasOpen(!isOffcanvasOpen);
+    };
+
     return (
-        <nav className="navbar navbar-expand-lg bg-body-tertiary">
-            <div className="container-fluid">
-                <a className="navbar-brand" href="#">NewsHunt</a>
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
+        <nav className="bg-gray-100 shadow-md">
+            <div className="container mx-auto px-4 py-2 flex justify-between items-center">
+                <a className="text-2xl font-bold text-gray-800" href="#">NewsHunt</a>
+                <button 
+                    className="text-gray-500 md:hidden" 
+                    onClick={toggleOffcanvas}
+                    aria-label="Toggle navigation">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
                 </button>
-                <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li className="nav-item">
-                            <a className="nav-link active" aria-current="page" href="#">Home</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">Link</a>
-                        </li>
-                        <li className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Dropdown
-                            </a>
-                            <ul className="dropdown-menu">
-                                <li><a className="dropdown-item" href="#">Action</a></li>
-                                <li><a className="dropdown-item" href="#">Another action</a></li>
-                                <li><hr className="dropdown-divider"></li>
-                                <li><a className="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link disabled" aria-disabled="true">Disabled</a>
-                        </li>
-                    </ul>
-                    <form className="d-flex" role="search">
-                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                            <button className="btn btn-outline-success" type="submit">Search</button>
-                    </form>
+                <div className="hidden md:flex space-x-4">
+                    <a className="text-gray-700 hover:text-gray-900" href="#">General</a>
+                    <a className="text-gray-700 hover:text-gray-900" href="#">Business</a>
+                    <a className="text-gray-700 hover:text-gray-900" href="#">Sports</a>
+                    <a className="text-gray-700 hover:text-gray-900" href="#">Politics</a>
                 </div>
             </div>
+            {/* Offcanvas Menu */}
+            {isOffcanvasOpen && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden">
+                    <div className="absolute top-0 left-0 right-0 bg-white shadow-lg p-4 z-50">
+                        <button 
+                            className="text-gray-500 mb-4" 
+                            onClick={toggleOffcanvas} 
+                            aria-label="Close navigation">
+                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                        <ul className="space-y-2">
+                            <li><a className="block text-gray-700 hover:text-gray-900" href="#">General</a></li>
+                            <li><a className="block text-gray-700 hover:text-gray-900" href="#">Business</a></li>
+                            <li><a className="block text-gray-700 hover:text-gray-900" href="#">Sports</a></li>
+                            <li><a className="block text-gray-700 hover:text-gray-900" href="#">Politics</a></li>
+                        </ul>
+                    </div>
+                </div>
+            )}
         </nav>
-    )
-}
+    );
+};
 
-export default Navbar()
+export default Navbar;
