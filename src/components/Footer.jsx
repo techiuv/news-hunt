@@ -1,9 +1,11 @@
+import React from 'react'
+
 const Footer = () => {
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="bg-gray-100 shadow-md py-4 mt-8">
-            <div className="container mx-auto px-4 text-center">
+        <footer className="bg-gray-100 min-h-[8vh] shadow-md py-4 mt-8">
+            <div className="container mx-auto px-4 flex justify-between items-center  text-center">
                 <p className="text-gray-700">&copy; {currentYear} NewsHunt. All Rights Reserved.</p>
                 <button
                     onClick={() => {
@@ -18,7 +20,7 @@ const Footer = () => {
                 </button>
             </div>
         </footer>
-    );
-};
+    )
+}
 
-export default Footer;
+export default Footer
