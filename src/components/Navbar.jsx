@@ -1,52 +1,69 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
-const Navbar = () => {
-    const [isOffcanvasOpen, setIsOffcanvasOpen] = useState(false);
+const Navbar = ({ onSearch, onCategorySelect }) => {
+    const [searchTerm, setSearchTerm] = useState('');
 
-    const toggleOffcanvas = () => {
-        setIsOffcanvasOpen(!isOffcanvasOpen);
+    // Handle search input change
+    const handleSearchChange = (e) => {
+        setSearchTerm(e.target.value);
+    };
+
+    // Handle search form submission
+    const handleSearchSubmit = (e) => {
+        e.preventDefault();
+        onSearch(searchTerm); 
+    };
+
+    // Handle category selection
+    const handleCategoryClick = (category) => {
+        onCategorySelect(category); 
     };
 
     return (
-        <nav className="bg-gray-100 shadow-md">
-            <div className="container mx-auto px-4 py-2 flex justify-between items-center">
-                <a className="text-2xl font-bold text-gray-800" href="#">NewsHunt</a>
-                <button 
-                    className="text-gray-500 md:hidden" 
-                    onClick={toggleOffcanvas}
-                    aria-label="Toggle navigation">
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
-                    </svg>
-                </button>
-                <div className="hidden md:flex space-x-4">
-                    <a className="text-gray-700 hover:text-gray-900" href="#">General</a>
-                    <a className="text-gray-700 hover:text-gray-900" href="#">Business</a>
-                    <a className="text-gray-700 hover:text-gray-900" href="#">Sports</a>
-                    <a className="text-gray-700 hover:text-gray-900" href="#">Politics</a>
-                </div>
+        <nav className="w-[100vw] flex justify-between items-center p-2 bg-gray-100  min-h-[8vh] fixed top-0 z-10">
+            {/* Logo / Brand Name */}
+            <div>
+                <a href="#" className="text-gray-800 cursor-pointer text-sm sm:text-lg px-1 ">NewsHunt</a>
             </div>
-            {/* Offcanvas Menu */}
-            {isOffcanvasOpen && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden">
-                    <div className="absolute top-0 left-0 right-0 bg-white shadow-lg p-4 z-50">
-                        <button 
-                            className="text-gray-500 mb-4" 
-                            onClick={toggleOffcanvas} 
-                            aria-label="Close navigation">
-                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </button>
-                        <ul className="space-y-2">
-                            <li><a className="block text-gray-700 hover:text-gray-900" href="#">General</a></li>
-                            <li><a className="block text-gray-700 hover:text-gray-900" href="#">Business</a></li>
-                            <li><a className="block text-gray-700 hover:text-gray-900" href="#">Sports</a></li>
-                            <li><a className="block text-gray-700 hover:text-gray-900" href="#">Politics</a></li>
-                        </ul>
-                    </div>
-                </div>
-            )}
+
+            {/* Category Links */}
+            <div>
+                <ul className="flex justify-center text-gray-100 font-normal  items-center capitalize gap-1 sm:gap-2">
+                    <li 
+                        onClick={() => handleCategoryClick('general')} 
+                        className="hover:underline cursor-pointer">general
+                    </li>
+                    <li 
+                        onClick={() => handleCategoryClick('business')} 
+                        className="hover:underline cursor-pointer">business
+                    </li>
+                    <li 
+                        onClick={() => handleCategoryClick('sports')} 
+                        className="hover:underline cursor-pointer">sports
+                    </li>
+                    <li 
+                        onClick={() => handleCategoryClick('politics')} 
+                        className="hover:underline cursor-pointer">politics
+                    </li>
+                </ul>
+            </div>
+
+            {/* Search Form */}
+            <div>
+                <form onSubmit={handleSearchSubmit}>
+                    <input 
+                        type="text" 
+                        value={searchTerm} 
+                        onChange={handleSearchChange} 
+                        placeholder="search news...." 
+                        className="bg-transparent border-none outline-none text-white text-sm sm:text-lg p-1" 
+                    />
+                    <button 
+                        type="submit" 
+                        className="text-white text-sm sm:text-lg p-1">Search
+                    </button>
+                </form>
+            </div>
         </nav>
     );
 };
