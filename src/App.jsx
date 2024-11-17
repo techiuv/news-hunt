@@ -1,15 +1,15 @@
 import { useState } from 'react'
 import './index.css'
-import './App.css'
 import Navbar from './components/Navbar'
 import NewsDashboard from './components/NewsDashboard'
 import Footer from './components/Footer'
 
 function App() {
+  const [category, setCategory] = useState('')
   return (
     <>
-      <Navbar />
-      <NewsDashboard />
+      <Navbar setCategory={setCategory} />
+      <NewsDashboard category={category} />
       <Footer />
     </>
   )
