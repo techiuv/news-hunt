@@ -2,10 +2,9 @@
 
 Welcome to **News Hunt** — a responsive and dynamic news application designed to keep you informed with the latest news updates from various sources. Built with modern web technologies to ensure a smooth and efficient user experience.
 
-## Project Details
-**Repository Name**: `news-hunt`  
-**Author**: [techiuv](https://github.com/techiuv)  
-**Tech Stack**: 
+## Tech Stack 
+ <img src="https://skillicons.dev/icons?i=react,tailwind,vite,&perline=8" />
+
 
 ---
 
@@ -57,10 +56,6 @@ Below are preview images of **News Hunt**:
 
 ---
 
-## Technologies Used
-- **React**: A JavaScript library for building user interfaces.
-- **Tailwind CSS**: A utility-first CSS framework for creating fast and responsive designs.
-- **Vite**: A next-generation front-end tooling for fast development and optimized builds.
 
 ## Contribution
 Contributions, issues, and feature requests are welcome! Feel free to check out the [issues page](https://github.com/techiuv/news-hunt/issues) to see what you can work on.
