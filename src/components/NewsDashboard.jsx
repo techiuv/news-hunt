@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 const NewsDashboard = ({ category }) => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
+  const api = import.meta.env.VITE_NEWS_API_KEY;
 
 
   useEffect(() => {
@@ -10,7 +11,7 @@ const NewsDashboard = ({ category }) => {
       setLoading(true);  // Set loading to true when new category is selected
       try {
         const response = await fetch(
-          `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${import.meta.env.VITE_NEWS_API_KEY}` 
+          `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${api}` 
         );
         const data = await response.json();
         setArticles(data.articles);
