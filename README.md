@@ -40,6 +40,10 @@ Welcome to **News Hunt** — a responsive and dynamic news application designed 
    ```bash
    npm run preview
    ```
+6. **Replace with your actual API**:
+   ```env
+   VITE_NEWS_API_KEY=YOUR_API_KEY_HERE
+   ```
 
 ---
 
